@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose'),
   Task = mongoose.model('Tasks');
+var User = mongoose.model('Users');
 
 exports.list_all_tasks = function(req, res) {
   Task.find({}, function(err, task) {
@@ -16,6 +17,7 @@ exports.list_all_tasks = function(req, res) {
 
 
 exports.create_a_task = function(req, res) {
+	
   var new_task = new Task(req.body);
   new_task.save(function(err, task) {
     if (err)
@@ -56,3 +58,19 @@ exports.delete_a_task = function(req, res) {
 };
 
 
+exports.list_all_users = function(req, res) {
+	User.find({}, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+}
+
+exports.create_user = function(req, res) {
+  var new_user = new User(req.body);
+  new_user.save(function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
