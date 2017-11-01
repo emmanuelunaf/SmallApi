@@ -37,10 +37,26 @@ var UserSchema  = new Schema({
 });
 
 var EventSchema = new Schema({
-	descripcion: {
+	description: {
 		type: String,
 		required: 'Description of event is required'
-	}
+	},
+	bgcolor: {
+		type: String,
+		default: "FFFFFF"
+	},
+	fgcolor: {
+		type: String,
+		default: "000000"
+	},
+	invitados:[],
+	asistentes:[],
+	fecha: {
+		type:Date,
+		default:Date.now
+	},
+	img: String,
+	location: String
 });
 
 module.exports = mongoose.model('Tasks', TaskSchema);
